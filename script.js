@@ -16,7 +16,7 @@ const counterReducer = (state = initialState, action) => {
         return {
             ...state,
             value: state.value + 1,
-            id: Math.random(state.id),
+            id: Math.floor(Math.random(state.id) * 50),
         }
     } else if (action.type === 'decrement') {
         return {
