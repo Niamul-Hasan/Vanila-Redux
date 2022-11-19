@@ -22,6 +22,7 @@ const counterReducer = (state = initialState, action) => {
         return {
             ...state,
             value: state.value - 1,
+            id: Math.ceil(Math.random(state.id) * 50),
         }
     } else {
         return state;
