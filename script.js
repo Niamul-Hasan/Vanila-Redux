@@ -10,18 +10,38 @@ const initialState = {
     value: 0,
 }
 
+//action identifier
+const INCREMENT = 'increment';
+const DECREMENT = 'decrement';
+
+//action creator
+
+const increment = (inputNum) => {
+    return {
+        type: INCREMENT,
+        payload: inputNum,
+    }
+};
+const decrement = (inputNum) => {
+    return {
+        type: DECREMENT,
+        payload: inputNum,
+    }
+};
+
+
 // reducer function 
 const counterReducer = (state = initialState, action) => {
-    if (action.type === 'increment') {
+    if (action.type === INCREMENT) {
         return {
             ...state,
-            value: state.value + 1,
+            value: state.value + action.payload,
             id: Math.random(state.id),
         }
-    } else if (action.type === 'decrement') {
+    } else if (action.type === DECREMENT) {
         return {
             ...state,
-            value: state.value - 1,
+            value: state.value - action.payload,
             id: Math.ceil(Math.random(state.id) * 50),
         }
     } else {
@@ -36,14 +56,10 @@ const store = Redux.createStore(counterReducer);
 // clickevent listeners 
 
 incrementEl.addEventListener('click', () => {
-    store.dispatch({
-        type: 'increment'
-    })
+    store.dispatch(increment(10));
 })
 decrementEl.addEventListener('click', () => {
-    store.dispatch({
-        type: 'decrement'
-    })
+    store.dispatch(decrement(5));
 })
 
 // for Ui Rendering 
